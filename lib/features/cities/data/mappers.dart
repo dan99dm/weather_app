@@ -6,6 +6,8 @@ extension CityDTOMapper on CityDTO {
     return CityEntity(
       name: name,
       countryCode: address.countryCode,
+      latitude: geoCode.latitude,
+      longitude: geoCode.longitude,
     );
   }
 }

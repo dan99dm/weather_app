@@ -3,21 +3,32 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/config/inject_config.dart';
 import 'package:weather_app/config/text_styles.dart';
 import 'package:weather_app/features/cities/presentation/cities_search_view_model.dart';
-import 'package:weather_app/features/weather/presentation/ui/components/app_icon.dart';
 import 'package:weather_app/features/cities/presentation/ui/cities_search.dart';
+import 'package:weather_app/features/weather_checker/presentation/ui/weather.dart';
+import 'package:weather_app/features/weather_checker/presentation/weather_checker_view_model.dart';
+import 'package:weather_app/screens/city_weather/components/app_icon.dart';
 
-class WeatherScreen extends StatelessWidget {
-  const WeatherScreen({super.key});
+class CityWeatherScreen extends StatelessWidget {
+  const CityWeatherScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CitiesSearchViewModel(
-        useCase: getIt.get(),
-      ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => CitiesSearchViewModel(
+            useCase: getIt.get(),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => WeatherCheckerViewModel(
+            useCase: getIt.get(),
+          ),
+        ),
+      ],
       child: Scaffold(
         body: SafeArea(
-          child: Padding(
+          child: SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -36,7 +47,9 @@ class WeatherScreen extends StatelessWidget {
                   style: BrandTextStyle.s14w400,
                 ),
                 SizedBox(height: 16),
-                CityPickerField(),
+                CityPickerWidget(),
+                SizedBox(height: 64),
+                WeatherWidget(),
               ],
             ),
           ),

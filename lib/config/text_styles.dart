@@ -13,6 +13,11 @@ class BrandTextStyle {
     fontWeight: FontWeight.w700,
   );
 
+  static final s20w500 = _default.copyWith(
+    fontSize: 20,
+    fontWeight: FontWeight.w500,
+  );
+
   static final s18w400 = _default.copyWith(
     fontSize: 18,
     fontWeight: FontWeight.w400,

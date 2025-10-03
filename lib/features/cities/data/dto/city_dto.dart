@@ -6,10 +6,12 @@ part 'city_dto.g.dart';
 class CityDTO {
   final String name;
   final CityAddressDto address;
+  final CityGeoCodeDto geoCode;
 
   const CityDTO({
     required this.name,
     required this.address,
+    required this.geoCode,
   });
 
   factory CityDTO.fromJson(Map<String, dynamic> json) =>
@@ -32,4 +34,20 @@ class CityAddressDto {
       _$CityAddressDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$CityAddressDtoToJson(this);
+}
+
+@JsonSerializable()
+class CityGeoCodeDto {
+  final double latitude;
+  final double longitude;
+
+  CityGeoCodeDto({
+    required this.latitude,
+    required this.longitude,
+  });
+
+  factory CityGeoCodeDto.fromJson(Map<String, dynamic> json) =>
+      _$CityGeoCodeDtoFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CityGeoCodeDtoToJson(this);
 }

@@ -7,15 +7,13 @@ import 'package:weather_app/features/cities/presentation/cities_search_view_mode
 import 'package:weather_app/features/cities/presentation/cities_search_state.dart';
 import 'package:weather_app/features/cities/presentation/ui/city_search_bottom_sheet.dart';
 
-class CityPickerField extends StatelessWidget {
+class CityPickerWidget extends StatelessWidget {
   final ValueChanged<CityEntity>? onSelected;
   final CityEntity? initialCity;
-  final String hintText;
 
-  const CityPickerField({
+  const CityPickerWidget({
     this.onSelected,
     this.initialCity,
-    this.hintText = 'Search for a city',
     super.key,
   });
 
