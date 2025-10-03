@@ -41,25 +41,31 @@ class _CitySearchBottomSheetState extends State<CitySearchBottomSheet> {
 
   @override
   Widget build(BuildContext context) {
-    return FractionallySizedBox(
-      heightFactor: 0.9,
-      child: Material(
-        clipBehavior: Clip.antiAlias,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-        color: Theme.of(context).cardColor,
+    return Material(
+      clipBehavior: Clip.antiAlias,
+      borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+      color: Theme.of(context).cardColor,
+      child: Padding(
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.viewInsetsOf(context).bottom,
+        ),
         child: Column(
           children: [
             const SizedBox(height: 8),
             Container(
-                width: 40,
-                height: 4,
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade400,
-                  borderRadius: BorderRadius.circular(2),
-                )),
+              width: 40,
+              height: 4,
+              decoration: BoxDecoration(
+                color: Colors.grey.shade400,
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
             const SizedBox(height: 8),
             Padding(
-              padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 8,
+              ),
               child: TextField(
                 controller: _controller,
                 focusNode: _focus,
@@ -108,8 +114,6 @@ class _CitySearchBottomSheetState extends State<CitySearchBottomSheet> {
                           return ListTile(
                             title: Text('${city.name} ${city.countryCode}'),
                             onTap: () {
-                              final vm = context.read<CitiesSearchViewModel>();
-                              vm.selectCity(city);
                               Navigator.of(context).pop(city);
                             },
                           );

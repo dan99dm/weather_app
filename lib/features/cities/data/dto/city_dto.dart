@@ -14,8 +14,7 @@ class CityDTO {
     required this.geoCode,
   });
 
-  factory CityDTO.fromJson(Map<String, dynamic> json) =>
-      _$CityDTOFromJson(json);
+  factory CityDTO.fromJson(Map<String, dynamic> json) => _$CityDTOFromJson(json);
 
   Map<String, dynamic> toJson() => _$CityDTOToJson(this);
 }
@@ -30,24 +29,22 @@ class CityAddressDto {
     required this.stateCode,
   });
 
-  factory CityAddressDto.fromJson(Map<String, dynamic> json) =>
-      _$CityAddressDtoFromJson(json);
+  factory CityAddressDto.fromJson(Map<String, dynamic> json) => _$CityAddressDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$CityAddressDtoToJson(this);
 }
 
 @JsonSerializable()
 class CityGeoCodeDto {
-  final double latitude;
-  final double longitude;
+  final double? latitude;
+  final double? longitude;
 
   CityGeoCodeDto({
     required this.latitude,
     required this.longitude,
   });
 
-  factory CityGeoCodeDto.fromJson(Map<String, dynamic> json) =>
-      _$CityGeoCodeDtoFromJson(json);
+  factory CityGeoCodeDto.fromJson(Map<String, dynamic> json) => _$CityGeoCodeDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$CityGeoCodeDtoToJson(this);
 }

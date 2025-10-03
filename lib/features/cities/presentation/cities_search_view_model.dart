@@ -5,7 +5,6 @@ import 'package:weather_app/core/failure.dart';
 import 'package:weather_app/core/network/api_response.dart';
 import 'package:weather_app/core/result.dart';
 import 'package:weather_app/features/cities/domain/cities_use_case.dart';
-import 'package:weather_app/features/cities/domain/entity/city_entity.dart';
 import 'package:weather_app/features/cities/presentation/cities_search_state.dart';
 
 class CitiesSearchViewModel extends Cubit<CitiesSearchState> {
@@ -48,13 +47,5 @@ class CitiesSearchViewModel extends Cubit<CitiesSearchState> {
       case Err():
         emit(CitiesSearchUnknownErrorState());
     }
-  }
-
-  void selectCity(CityEntity city) {
-    final state = this.state;
-    if (state is! CitiesSearchLoadedState) {
-      return;
-    }
-    emit(state.copyWith(pickedCity: city));
   }
 }

@@ -1,42 +1,60 @@
+import 'package:equatable/equatable.dart';
 import 'package:weather_app/features/cities/domain/entity/city_entity.dart';
 
-sealed class CitiesSearchState {
-  CitiesSearchState();
+sealed class CitiesSearchState extends Equatable {
+  const CitiesSearchState();
 }
 
 class CitiesSearchInitialState extends CitiesSearchState {
-  CitiesSearchInitialState();
+  const CitiesSearchInitialState();
+
+  @override
+  List<Object?> get props => [];
 }
 
 class CitiesSearchLoadingState extends CitiesSearchState {
-  CitiesSearchLoadingState();
+  const CitiesSearchLoadingState();
+
+  @override
+  List<Object?> get props => [];
 }
 
 class CitiesSearchLoadedState extends CitiesSearchState {
   final List<CityEntity> cities;
 
-  CitiesSearchLoadedState({
+  const CitiesSearchLoadedState({
     required this.cities,
   });
 
   CitiesSearchState copyWith({
     List<CityEntity>? cities,
-    CityEntity? pickedCity,
   }) {
     return CitiesSearchLoadedState(
       cities: cities ?? this.cities,
     );
   }
+
+  @override
+  List<Object?> get props => [cities];
 }
 
 class CitiesSearchNetworkErrorState extends CitiesSearchState {
-  CitiesSearchNetworkErrorState();
+  const CitiesSearchNetworkErrorState();
+
+  @override
+  List<Object?> get props => [];
 }
 
 class CitiesSearchBadRequestErrorState extends CitiesSearchState {
-  CitiesSearchBadRequestErrorState();
+  const CitiesSearchBadRequestErrorState();
+
+  @override
+  List<Object?> get props => [];
 }
 
 class CitiesSearchUnknownErrorState extends CitiesSearchState {
-  CitiesSearchUnknownErrorState();
+  const CitiesSearchUnknownErrorState();
+
+  @override
+  List<Object?> get props => [];
 }

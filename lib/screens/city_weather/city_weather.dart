@@ -7,6 +7,7 @@ import 'package:weather_app/features/cities/presentation/ui/cities_search.dart';
 import 'package:weather_app/features/weather_checker/presentation/ui/weather.dart';
 import 'package:weather_app/features/weather_checker/presentation/weather_checker_view_model.dart';
 import 'package:weather_app/screens/city_weather/components/app_icon.dart';
+import 'package:weather_app/screens/city_weather/view_model/city_weather_view_model.dart';
 
 class CityWeatherScreen extends StatelessWidget {
   const CityWeatherScreen({super.key});
@@ -25,36 +26,48 @@ class CityWeatherScreen extends StatelessWidget {
             useCase: getIt.get(),
           ),
         ),
-      ],
-      child: Scaffold(
-        body: SafeArea(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Row(),
-                SizedBox(height: 32),
-                AppIcon(),
-                SizedBox(height: 16),
-                Text(
-                  'Weather App',
-                  style: BrandTextStyle.s30w700,
-                ),
-                SizedBox(height: 16),
-                Text(
-                  'Search for any city to get current temperature',
-                  style: BrandTextStyle.s14w400,
-                ),
-                SizedBox(height: 16),
-                CityPickerWidget(),
-                SizedBox(height: 64),
-                WeatherWidget(),
-              ],
-            ),
+        BlocProvider(
+          create: (context) => CityWeatherViewModel(
+            weatherVM: context.read<WeatherCheckerViewModel>(),
           ),
         ),
-      ),
+      ],
+      child: Builder(builder: (context) {
+        final viewModel = context.watch<CityWeatherViewModel>();
+        final state = viewModel.state;
+        return Scaffold(
+          body: SafeArea(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Row(),
+                  SizedBox(height: 32),
+                  AppIcon(),
+                  SizedBox(height: 16),
+                  Text(
+                    'Weather App',
+                    style: BrandTextStyle.s30w700,
+                  ),
+                  SizedBox(height: 16),
+                  Text(
+                    'Search for any city to get current temperature',
+                    style: BrandTextStyle.s14w400,
+                  ),
+                  SizedBox(height: 16),
+                  CityPickerWidget(
+                    initialCity: state.pickedCity,
+                    onSelected: viewModel.pickCity,
+                  ),
+                  SizedBox(height: 64),
+                  WeatherWidget(),
+                ],
+              ),
+            ),
+          ),
+        );
+      }),
     );
   }
 }

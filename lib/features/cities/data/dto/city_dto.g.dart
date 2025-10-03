@@ -32,8 +32,8 @@ Map<String, dynamic> _$CityAddressDtoToJson(CityAddressDto instance) =>
 
 CityGeoCodeDto _$CityGeoCodeDtoFromJson(Map<String, dynamic> json) =>
     CityGeoCodeDto(
-      latitude: (json['latitude'] as num).toDouble(),
-      longitude: (json['longitude'] as num).toDouble(),
+      latitude: (json['latitude'] as num?)?.toDouble(),
+      longitude: (json['longitude'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$CityGeoCodeDtoToJson(CityGeoCodeDto instance) =>
