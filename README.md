@@ -6,6 +6,10 @@ This project is designed using **Clean Architecture** principles to ensure scala
 - **City Search**: Search for cities to select the desired location.
 - **Weather Display**: Show the current weather for the selected city.
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/dan99dm/weather_app/main/.github/images/app_overview.gif" alt="App overview" height="400">
+</p>
+
 ---
 ## Dependencies
 
