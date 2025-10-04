@@ -42,6 +42,7 @@ class CitiesSearchViewModel extends Cubit<CitiesSearchState> {
         emit(CitiesSearchLoadedState(cities: cities));
       case Err(failure: ApiFailure(errorType: ApiResponseErrorType.network)):
         emit(CitiesSearchNetworkErrorState());
+      case Err(failure: ValidationFailure()):
       case Err(failure: ApiFailure(errorType: ApiResponseErrorType.badRequest)):
         emit(CitiesSearchBadRequestErrorState());
       case Err():
